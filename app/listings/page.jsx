@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import PropertyListings from '@/components/PropertyListings';
+import PropertyListings from '@/components/PropertyListings/Listings';
 import axios from 'axios';
 
 const page = () => {
