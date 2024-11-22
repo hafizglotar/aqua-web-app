@@ -5,7 +5,6 @@ import LocationSliderIndex from "@/components/LocationSliderIndex";
 import OffPlanHome from "@/components/OffPlanHome";
 import PropertyTabs from "@/components/PropertyTabs";
 import SelectionLocationIndex from "@/components/SelectionLocationIndex";
-import SelectLocationBox from "@/components/SelectLocationBox";
 import ServiceBoxSlider from "@/components/ServiceBoxSlider";
 import TheCommunityBox from "@/components/TheCommunityBox";
 

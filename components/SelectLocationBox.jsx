@@ -5,7 +5,11 @@ import Link from 'next/link'
 const SelectLocationBox = ({boxThumbail, boxLogo, boxText}) => {
     const [ isHovered, setIsHovered ] = useState(false);
     return (
-        <div className='w-1/2 bg-[#efefef] rounded-xl overflow-hidden'>
+        <div 
+            className='w-1/2 bg-[#efefef] rounded-xl overflow-hidden'
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <div className="flex">
                 <div className="w-4/12">
                     <Link href="#">
@@ -26,11 +30,7 @@ const SelectLocationBox = ({boxThumbail, boxLogo, boxText}) => {
                         </div>
                     </Link>
                 </div>
-                <div 
-                    className="w-8/12 relative"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}            
-                >
+                <div className="w-8/12 relative">
                     <div className='relative flex items-center justify-center h-full overflow-hidden'>
                         <Image 
                             src={boxLogo} 
