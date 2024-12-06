@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { fetchListings } from '@/app/api/listingsApi'; // Adjust the path
+import { fetchListingData } from '@/app/api/listingsApi'; // Adjust the path
 
 const Listings = ({ initialListings, totalPages }) => {
     const [listings, setListings] = useState(initialListings || []);
@@ -13,7 +13,7 @@ const Listings = ({ initialListings, totalPages }) => {
         try {
             setLoading(true);
             setError(null);
-        const data = await fetchListings(page, 12);
+        const data = await fetchListingData(page, 12);
             console.log('fetched data', data);
             setListings(data.data || []);
         } catch (err) {

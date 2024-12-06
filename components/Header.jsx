@@ -5,11 +5,11 @@ import Image from 'next/image'
 import LinkButton from './LinkButton'
 const header = () => {
     return (
-        <div className="headerOuter fixed w-full pt-5 pb-5">
+        <div className="headerOuter fixed w-full pt-5 pb-5 z-50">
             <div className="flex items-center gap-5 justify-between ml-20 mr-20 m-auto">
                 <div className="siteLogo">
                     <Link href="/#">
-                        <Image 
+                        <Image
                             src="/images/aqua-logo.png" 
                             alt="aqua-logo.png" 
                             width={170}

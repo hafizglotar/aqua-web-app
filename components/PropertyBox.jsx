@@ -4,19 +4,22 @@ import LinkButton from './LinkButton'
 import BedIcon from './icons/BedIcon'
 import BathIcon from './icons/BathIcon'
 import AreaIcon from './icons/AreaIcon'
-const PropertyBox = ({PropertyImage, Feeature, Type, Location, Bed, Bathrooms, Area, Price, PropertyLink}) => {
+import Link from 'next/link'
+const PropertyBox = ({PropertyImage, Featured, Type, Location, Bed, Bathrooms, Area, Price, PropertyLink}) => {
     return (
         <div className='propertyBox border border-[#cccccc73] rounded-lg p-5'>
-            <div className='relative mb-4'>
-                <Image
-                    className='rounded-lg'
-                    src={PropertyImage} 
-                    alt="property-1.webp" 
-                    width={1000} 
-                    height={1000}
-                />
+            <div className='relative mb-4 h-[230px]'>
+                <Link href={PropertyLink}>
+                    <Image
+                        className='rounded-lg objectCover'
+                        src={PropertyImage} 
+                        alt="property-1.webp" 
+                        width={1000} 
+                        height={1000}
+                    />
+                </Link>
                 <span className='absolute top-2 left-2 px-4 py-2 block rounded-lg text-sm leading-4 bg-white'>
-                    {Feeature}
+                    {Featured}
                 </span>
             </div>
             <div className="relative">

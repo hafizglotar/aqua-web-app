@@ -1,3 +1,4 @@
+import { QueryProvider } from './context/QueryClientProvider';
 import localFont from "next/font/local";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Header />
-        {children}
+        <QueryProvider>{children}</QueryProvider>
         <Footer />
       </body>
     </html>
