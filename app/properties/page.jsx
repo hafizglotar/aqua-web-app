@@ -27,7 +27,7 @@ export default function ListingsPage() {
     if (isError) return <div className="max-w-7xl mx-auto px-4 pt-20">Error loading listings.</div>;
     return (
         <div className="max-w-7xl mx-auto px-4 pt-20">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
                 {data.data.map((item) => {
                     const priceFormatted = new Intl.NumberFormat().format(item.price);
                     return (
@@ -47,11 +47,13 @@ export default function ListingsPage() {
                     );
                 })}
             </div>
-            <Pagination
-                currentPage={page}
-                lastPage={data.last_page}
-                onPageChange={(newPage) => setPage(newPage)}
-            />
+            <div className="mb-14">
+                <Pagination
+                    currentPage={page}
+                    lastPage={data.last_page}
+                    onPageChange={(newPage) => setPage(newPage)}
+                />
+            </div>
         </div>
     );
 }
