@@ -2,23 +2,22 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchListings } from '../api/services/api';
+import { fetchListingsSale } from '../api/services/api';
 import Pagination from '@/components/Pagination';
 import PropertyBox from '@/components/PropertyBox';
-import Image from 'next/image';
 export default function ListingsPage() {
     const [page, setPage] = useState(1);
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['listings', page],
-        queryFn: () => fetchListings(page),
+        queryFn: () => fetchListingsSale(page),
         keepPreviousData: true, 
         staleTime: 1000 * 60,
     });
     // Prefetch next page
     useQuery({
         queryKey: ['listings', page + 1],
-        queryFn: () => fetchListings(page + 1),
+        queryFn: () => fetchListingsSale(page + 1),
         enabled: page < (data?.last_page || 1),
     });
 
