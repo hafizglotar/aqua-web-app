@@ -19,7 +19,7 @@ const PropertyTabs = () => {
                 ? await fetchListingsSale(page)
                 : await fetchListingsRent(page);
     
-            console.log("🚀 Full API Response:", response );
+            // console.log("🚀 Full API Response:", response );
     
             if (!response) {
                 throw new Error("Invalid API response: No data received.");
@@ -48,8 +48,36 @@ const PropertyTabs = () => {
     }
 
     // Slider settings
-    const sliderSettings = { /* ... unchanged ... */ };
+    const sliderSettings = {
+        dots: false,
+        infinite: true,
+        arrow: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+            slidesToShow: 2,
+            },
+        },
+        {
+            breakpoint: 768,
+            settings: {
+            slidesToShow: 2,
+            },
+        },
+        {
+            breakpoint: 600,
+            settings: {
+            slidesToShow: 1,
+            },
+        },
+        ],
+    };
     // const properties = data ?? [];
+    console.log("data length: ", data.length);
 
     return (
         
@@ -75,23 +103,21 @@ const PropertyTabs = () => {
                     className="serviceBoxCarousel"
                 >
                     {data.length > 0 ? (
-                        <Slider {...sliderSettings} key={activeTab} className="serviceBoxCarousel">
-                            {data.map((property) => (
-                                <div key={property.id}>
-                                    <PropertyBox
-                                        PropertyImage={property.first_image}
-                                        Feeature={property.featured ? 'Featured' : ''}
-                                        Location={property.loc_area_name}
-                                        Type={property.type}
-                                        Bed={property.beds}
-                                        Bathrooms={property.bathrooms}
-                                        Area={property.build_up_area}
-                                        Price={property.price}
-                                        PropertyLink={property.detail_url}
-                                    />
-                                </div>
-                            ))}
-                        </Slider>
+                        data.map((property) => (
+                            <div key={property.id}>
+                                <PropertyBox
+                                    PropertyImage={property.first_image}
+                                    // Feeature={property.featured ? 'Featured' : ''}
+                                    Location={property.loc_area_name}
+                                    Type={property.type}
+                                    Bed={property.beds}
+                                    Bathrooms={property.bathrooms}
+                                    Area={property.build_up_area}
+                                    Price={property.price}
+                                    PropertyLink={property.detail_url}
+                                />
+                            </div>
+                        ))
                     ) : (
                         <div>No properties available</div>
                     )}

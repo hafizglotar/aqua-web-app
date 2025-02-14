@@ -18,9 +18,13 @@ const PropertyBox = ({PropertyImage, Featured, Type, Location, Bed, Bathrooms, A
                         height={1000}
                     />
                 </Link>
-                <span className='absolute top-2 left-2 px-4 py-2 block rounded-lg text-sm leading-4 bg-white'>
-                    {Featured}
-                </span>
+                {Featured > 0 ? ( 
+                    <span className='absolute top-2 left-2 px-4 py-2 block rounded-lg text-sm leading-4 bg-white'>
+                        {Featured}
+                    </span>
+                    ):
+                    <span></span>
+                }
             </div>
             <div className="relative">
                 <h2 className='font-bold text-lg mb-2'>{Location}</h2>
