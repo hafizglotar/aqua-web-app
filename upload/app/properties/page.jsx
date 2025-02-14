@@ -12,11 +12,10 @@ export default function ListingsPage() {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['listings', page],
         queryFn: () => fetchListings(page),
-        keepPreviousData: true, // Retain previous page data during fetch
-        staleTime: 1000 * 60,   // Cache data for 1 minute
+        keepPreviousData: true, 
+        staleTime: 1000 * 60,
     });
-
-      // Prefetch next page
+    // Prefetch next page
     useQuery({
         queryKey: ['listings', page + 1],
         queryFn: () => fetchListings(page + 1),
@@ -24,8 +23,8 @@ export default function ListingsPage() {
     });
 
 
-    if (isLoading) return  <div className="container mx-auto px-4 pt-20">Loading...</div>;
-    if (isError) return <div className="container mx-auto px-4 pt-20">Error loading listings.</div>;
+    if (isLoading) return  <div className="max-w-7xl mx-auto px-4 pt-20">Loading...</div>;
+    if (isError) return <div className="max-w-7xl mx-auto px-4 pt-20">Error loading listings.</div>;
     return (
         <div className="max-w-7xl mx-auto px-4 pt-20">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -35,7 +34,6 @@ export default function ListingsPage() {
                         <PropertyBox 
                             key={item.id}
                             PropertyImage={`https://s3.amazonaws.com/rexcrm/${item.images_path.split("|")[0]}`}
-                            // PropertyImage={generateImageUrl}
                             Featured="Featured"
                             Location={item.loc_area_name}
                             Type={item.category_name}
@@ -43,7 +41,7 @@ export default function ListingsPage() {
                             Bathrooms={item.baths}
                             Area={item.build_up_area}
                             Price={`${priceFormatted} / ${item.frequency}`}
-                            PropertyLink={`${item.property_for.toLowerCase()}/${item.slug}`}
+                            PropertyLink={`/properties/${item.slug}`}
                         />
                     );
                 })}

@@ -1,8 +1,9 @@
-// import { Children } from '@/public/images/Create Next App_files/node_modules_next_dist_compiled_107ce8._'
-import InnerPageBanner from '@/components/InnerPageBanner'
+'use client'
 import React from 'react'
+import InnerPageBanner from '@/components/InnerPageBanner'
 
-const layout = ({children}) => {
+const Layout = ({children}) => {
+
     return (
         <div className='listingPage'>
             <div className='listingHeader'>
@@ -13,4 +14,4 @@ const layout = ({children}) => {
     )
 }
 
-export default layout
+export default Layout
