@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://aquaproperties.com/api/load_properties";
 // const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 
