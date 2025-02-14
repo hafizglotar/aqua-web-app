@@ -26,4 +26,3 @@ export const fetchListings = async (page = 1, limit = 12) => {
 //         throw error;
 //     }
 // };
-

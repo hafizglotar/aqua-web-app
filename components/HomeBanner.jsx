@@ -8,7 +8,7 @@ const HomeBanner = () => {
                 backgroundImage: 'url(/images/home-banner.webp)' // Corrected URL path
             }}
         >
-            <div className="bannerText w-full max-w-[1280] m-auto">
+            <div className="bannerText w-full max-w-7xl m-auto">
                 <h1 className='text-[36px] text-white font-bold mb-3'>Leading Real Estate Company in Dubai</h1>
                 <p className='text-xl text-white'>Your trusted partner to buy, sell or rent a property in Dubai</p>
             </div>
