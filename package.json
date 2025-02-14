@@ -17,7 +17,6 @@
     "photoswipe": "^5.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-image-lightbox": "^5.1.4",
     "react-lazy-load-image-component": "^1.6.2",
     "react-photoswipe": "^1.1.0",
     "react-photoswipe-gallery": "^3.0.2",
