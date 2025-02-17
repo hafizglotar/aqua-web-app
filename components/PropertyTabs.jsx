@@ -101,21 +101,24 @@ const PropertyTabs = () => {
                     className="serviceBoxCarousel"
                 >
                     {data.length > 0 ? (
-                        data.map((property) => (
-                            <div key={property.id}>
-                                <PropertyBox
-                                    PropertyImage={property.first_image}
-                                    // Feeature={property.featured ? 'Featured' : ''}
-                                    Location={property.loc_area_name}
-                                    Type={property.type}
-                                    Bed={property.beds}
-                                    Bathrooms={property.bathrooms}
-                                    Area={property.build_up_area}
-                                    Price={property.price}
-                                    PropertyLink={property.detail_url}
-                                />
-                            </div>
-                        ))
+                        data.map((property) => {
+                            const priceFormatted = new Intl.NumberFormat().format(property.price);
+                            return (
+                                <div key={property.id}>
+                                    <PropertyBox
+                                        PropertyImage={property.first_image}
+                                        // Feeature={property.featured ? 'Featured' : ''}
+                                        Location={property.loc_area_name.replace(/-/g, ' ')}
+                                        Type={property.type}
+                                        Bed={property.beds}
+                                        Bathrooms={property.bathrooms}
+                                        Area={property.build_up_area}
+                                        Price={priceFormatted}
+                                        PropertyLink={property.detail_url}
+                                    />
+                                </div>
+                            )
+                        })
                     ) : (
                         <div>No properties available</div>
                     )}
