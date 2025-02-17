@@ -27,7 +27,7 @@ const PropertyBox = ({PropertyImage, Featured, Type, Location, Bed, Bathrooms, A
                 }
             </div>
             <div className="relative">
-                <h2 className='font-bold text-lg mb-2'>{Location}</h2>
+                <h2 className='font-bold text-lg mb-2 capitalize'>{Location}</h2>
                 <span className='block mb-2'>{Type}</span>
                 <ul className='flex gap-6 mb-2'>
                     <li className='flex gap-2 items-center'>
