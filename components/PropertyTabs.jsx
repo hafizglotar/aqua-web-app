@@ -76,8 +76,6 @@ const PropertyTabs = () => {
         },
         ],
     };
-    // const properties = data ?? [];
-    console.log("data length: ", data.length);
 
     return (
         
