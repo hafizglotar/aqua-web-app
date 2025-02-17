@@ -27,21 +27,21 @@ export default function ListingsPage() {
     return (
         <div className="max-w-7xl mx-auto px-4 pt-20">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
-                {data.data.map((item) => {
-                    const priceFormatted = new Intl.NumberFormat().format(item.price);
+                {data.data.map((property) => {
+                    const priceFormatted = new Intl.NumberFormat().format(property.price);
                     return (
                         <PropertyBox 
-                            key={item.id}
-                            PropertyImage={item.first_image}
+                            key={property.id}
+                            PropertyImage={property.first_image}
                             // PropertyImage={`https://s3.amazonaws.com/rexcrm/${item.images_path.split("|")[0]}`}
                             Featured="Featured"
-                            Location={item.loc_area_name}
-                            Type={item.category_name}
-                            Bed={item.beds === 0 ? 'Studio' : item.beds}
-                            Bathrooms={item.baths}
-                            Area={item.build_up_area}
-                            Price={`${priceFormatted} / ${item.frequency}`}
-                            PropertyLink={item.detail_url}
+                            Location={property.loc_area_name.replace(/-/g, ' ')}
+                            Type={property.category_name}
+                            Bed={property.beds === 0 ? 'Studio' : property.beds}
+                            Bathrooms={property.baths}
+                            Area={property.build_up_area}
+                            Price={priceFormatted}
+                            PropertyLink={property.detail_url}
                         />
                     );
                 })}

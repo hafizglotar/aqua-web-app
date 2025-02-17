@@ -23,4 +23,4 @@ export const fetchListingsRent = async (page = 1, limit = 9) => {
         console.error('Error fetching listings for Rent:', error);
         throw error;
     }
-};
+};``
