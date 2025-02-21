@@ -7,7 +7,7 @@ const Layout = ({children}) => {
     return (
         <div className='listingPage'>
             <div className='listingHeader'>
-                <InnerPageBanner PageTitle="Best Apartments for Rent in Dubai" />
+                <InnerPageBanner PageTitle="Best Apartments for Rent & Sale in Dubai" />
             </div>
             {children}
         </div>
