@@ -73,7 +73,14 @@ body {
   cursor: pointer;
   background-image: linear-gradient(to right, #00bdf5, #0dcdf4);
 }
-
+.aquaButtonHover {
+  padding: 9px 36px;
+  color: #00bdf5;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: 1px solid #00bdf5;
+}
 td {
   border: 1px solid #ededed;
   padding: 5px;
