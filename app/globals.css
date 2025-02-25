@@ -85,3 +85,11 @@ td {
   border: 1px solid #ededed;
   padding: 5px;
 }
+.pagiButton {
+  padding: 9px 18px;
+  color: #fff;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #00bdf5, #0dcdf4);
+}
