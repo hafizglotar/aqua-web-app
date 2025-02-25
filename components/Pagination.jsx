@@ -1,9 +1,17 @@
 export default function Pagination({ currentPage, lastPage, onPageChange }) {
+    
+    console.log("Last Page: ", lastPage);
+    
     const visiblePages = 4; 
     const pageNumbers = [];
 
+
+
     let startPage = Math.max(1, currentPage - 2);
+    console.log("Starting page: ", startPage);
+
     let endPage = Math.min(lastPage, startPage + visiblePages - 1);
+    console.log("Ending page: ", endPage);
 
     if (endPage >= lastPage - 1) {
         startPage = Math.max(1, lastPage - visiblePages + 1);
@@ -12,6 +20,7 @@ export default function Pagination({ currentPage, lastPage, onPageChange }) {
     for (let i = startPage; i <= endPage; i++) {
         pageNumbers.push(i);
     }
+
     console.log("total number of page" + pageNumbers);
     return (
         <div className="flex justify-center mt-4 space-x-2">
@@ -23,7 +32,6 @@ export default function Pagination({ currentPage, lastPage, onPageChange }) {
             >
                 Previous
             </button>
-
             {/* Show First Page + Dots if necessary */}
             {startPage > 1 && (
                 <>
@@ -38,7 +46,6 @@ export default function Pagination({ currentPage, lastPage, onPageChange }) {
                     {startPage > 2 && <span className="px-3 py-2">...</span>}
                 </>
             )}
-
             {/* Dynamic Page Numbers */}
             {pageNumbers.map((number) => (
                 <button
@@ -51,7 +58,6 @@ export default function Pagination({ currentPage, lastPage, onPageChange }) {
                     {number}
                 </button>
             ))}
-
             {/* Show Last Page + Dots if necessary */}
             {endPage < lastPage && (
                 <>
@@ -66,7 +72,6 @@ export default function Pagination({ currentPage, lastPage, onPageChange }) {
                     </button>
                 </>
             )}
-
             {/* Next Button */}
             <button
                 onClick={() => onPageChange(currentPage + 1)}

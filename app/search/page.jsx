@@ -10,7 +10,7 @@ export default function ListingsPage() {
     const [isMounted, setIsMounted] = useState(false); // Fix hydration issue
     const [filteredData, setFilteredData] = useState([]);
     const [filters, setFilters] = useState({
-        property_type: "",  // Only one selected property type
+        property_type: "Residential",  // Default to Residential
         property_for: "",
         project_status: "",
         category_name: null,
@@ -23,7 +23,7 @@ export default function ListingsPage() {
 
     useEffect(() => {
         setIsMounted(true);
-        setFilteredData(propertyListing);
+        filterProperties("Residential"); // Load residential properties initially
     }, []);
 
     // Generate category & location options for react-select
@@ -38,7 +38,7 @@ export default function ListingsPage() {
         setFilters({ ...filters, [field]: selectedOption });
     };
 
-    // Handle radio button and select changes
+    // Handle input changes
     const handleChange = (e) => {
         const { name, value, dataset } = e.target;
     
@@ -55,21 +55,27 @@ export default function ListingsPage() {
                 project_status: "",
             }));
         } else {
-            // Handle beds and baths
             setFilters((prevFilters) => ({
                 ...prevFilters,
                 [name]: value,
             }));
         }
     };
-    
-    // Function to select only one property type (Residential or Commercial)
-    const setPropertyType = (type) => {
-        setFilters(prevFilters => ({
-            ...prevFilters,
-            property_type: prevFilters.property_type === type ? "" : type
 
+    // Function to filter properties based on property type
+    const filterProperties = (type) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            property_type: type
         }));
+
+        const filteredResults = propertyListing.filter(
+            (item) => item.property_type === type
+        );
+
+        setFilteredData(filteredResults);
+        console.log(setFilteredData(filteredResults))
+        setPage(1);
     };
 
 
@@ -87,7 +93,6 @@ export default function ListingsPage() {
 
         setFilteredData(filteredResults);
         setPage(1);
-        console.log("Search Result: ", filteredResults);
     };
 
     // Paginate filtered results
@@ -104,26 +109,25 @@ export default function ListingsPage() {
     return (
         <div className="max-w-7xl mx-auto px-4 pt-20">
 
-                {/* Property Type Tags (Residential / Commercial) */}
-                <div className="tagFilter flex justify-center gap-2 mb-5">
-                    <button 
-                        className={`tagButton ${filters.property_type === "Residential" ? "aquaButton" : " aquaButtonHover "}`} 
-                        onClick={() => setPropertyType("Residential")}
-                    >
-                        Residential
-                    </button>
-                    <button 
-                        className={`tagButton ${filters.property_type === "Commercial" ? "aquaButton" : "aquaButtonHover"}`} 
-                        onClick={() => setPropertyType("Commercial")}
-                    >
-                        Commercial
-                    </button>
-                </div>
+            {/* Property Type Tabs */}
+            <div className="flex justify-center gap-2 mb-5">
+                <button 
+                    className={`tagButton ${filters.property_type === "Residential" ? "aquaButton" : "aquaButtonHover"}`} 
+                    onClick={() => filterProperties("Residential")}
+                >
+                    Residential
+                </button>
+                <button 
+                    className={`tagButton ${filters.property_type === "Commercial" ? "aquaButton" : "aquaButtonHover"}`} 
+                    onClick={() => filterProperties("Commercial")}
+                >
+                    Commercial
+                </button>
+            </div>
 
             {/* Filters */}
             <div className="searchOuter flex items-center flex-wrap gap-2 justify-between mb-8 bg-[#f4f4f4] p-5 rounded-lg">
                 {/* Property For Filter (Rent/Sale/Offplan) */}
-
                 <div className="radioFilter flex items-center bg-white px-1 py-3 rounded-lg">
                     <label className="cursor-pointer">
                         <input
@@ -170,7 +174,8 @@ export default function ListingsPage() {
                         </span>
                     </label>
                 </div>
-                {/* Category Name Select */}
+
+                {/* Category Select */}
                 <Select
                     options={categoryOptions}
                     value={filters.category_name}
@@ -207,6 +212,9 @@ export default function ListingsPage() {
                 </select>
 
                 {/* Search Button */}
+
+
+                {/* Search Button */}
                 <button className="aquaButton" type="button" onClick={handleSearch}>
                     Search
                 </button>
@@ -225,7 +233,7 @@ export default function ListingsPage() {
                             Bed={property.beds === 0 ? "Studio" : property.beds}
                             Bathrooms={property.baths}
                             Area={property.build_up_area}
-                            Price={`${new Intl.NumberFormat().format(property.price)} / ${property.frequency}`}
+                            Price={`${new Intl.NumberFormat().format(property.price)}${property.property_for === "Sale" ? "" : ` / ${property.frequency}`}`}
                             PropertyLink={property.detail_url || "/"}
                         />
                     ))
@@ -234,12 +242,12 @@ export default function ListingsPage() {
                 )}
             </div>
 
-            {/* Pagination Controls */}
-            {lastPage > 1 && (
+            {/* Pagination */}
+            {lastPage > 1 && 
                 <div className="mb-14">
                     <Pagination currentPage={page} lastPage={lastPage} onPageChange={setPage} />
                 </div>
-            )}
+            }
         </div>
     );
 }
